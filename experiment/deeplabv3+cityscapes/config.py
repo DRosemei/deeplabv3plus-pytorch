@@ -31,7 +31,7 @@ class Configuration():
 		self.MODEL_ASPP_OUTDIM = 256
 		self.MODEL_SHORTCUT_DIM = 48
 		self.MODEL_SHORTCUT_KERNEL = 1
-		self.MODEL_NUM_CLASSES = 34
+		self.MODEL_NUM_CLASSES = 19
 		self.MODEL_SAVE_DIR = os.path.join(self.ROOT_DIR,'model',self.EXP_NAME)
 
 		self.TRAIN_LR = 0.007
@@ -44,16 +44,16 @@ class Configuration():
 		self.TRAIN_BATCHES = 8
 		self.TRAIN_SHUFFLE = True
 		self.TRAIN_MINEPOCH = 0	
-		self.TRAIN_EPOCHS = 46
+		self.TRAIN_EPOCHS = 100
 		self.TRAIN_LOSS_LAMBDA = 0
 		self.TRAIN_TBLOG = True
-		self.TRAIN_CKPT = None#os.path.join(self.ROOT_DIR,'model/deeplabv3+cityscapes/deeplabv3plus_xception_Cityscapes_itr0.pth')
+		self.TRAIN_CKPT = None#os.path.join(self.ROOT_DIR,'model/deeplabv3+cityscapes/deeplabv3plus_res101_atrous_Cityscapes_itr0.pth')
 
 		self.LOG_DIR = os.path.join(self.ROOT_DIR,'log',self.EXP_NAME)
 
 		self.TEST_MULTISCALE = [0.5, 0.75, 1.0, 1.25, 1.5, 1.75]
 		self.TEST_FLIP = True
-		self.TEST_CKPT = os.path.join(self.ROOT_DIR,'model/deeplabv3+cityscapes/deeplabv3plus_res101_atrous_Cityscapes_epoch46_all.pth')
+		self.TEST_CKPT = os.path.join(self.ROOT_DIR,'model/deeplabv3+cityscapes/deeplabv3plus_res101_atrous_Cityscapes_epoch100_all.pth')
 		self.TEST_GPUS = 2
 		self.TEST_BATCHES = 8		
 
