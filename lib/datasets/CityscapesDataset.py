@@ -48,25 +48,25 @@ class CityscapesDataset(Dataset):
         self.cfg = cfg
 
         self.categories = [
-                        # 'unlabeled'           , 
-                        'ego vehicle'         , 
-                        'rectification border', 
-                        'out of roi'          , 
-                        'static'              , 
-                        'dynamic'             , 
-                        'ground'              , 
+#                        'unlabeled'           , 
+#                        'ego vehicle'         , 
+#                        'rectification border', 
+#                        'out of roi'          , 
+#                        'static'              , 
+#                        'dynamic'             , 
+#                        'ground'              , 
                         'road'                , 
                         'sidewalk'            , 
-                        'parking'             , 
-                        'rail track'          , 
+#                        'parking'             , 
+#                        'rail track'          , 
                         'building'            , 
-                        'wall'                , 
+                        'wall'                ,
                         'fence'               , 
-                        'guard rail'          , 
-                        'bridge'              , 
-                        'tunnel'              , 
+#                        'guard rail'          ,
+#                        'bridge'              , 
+#                        'tunnel'              , 
                         'pole'                , 
-                        'polegroup'           , 
+#                        'polegroup'           ,
                         'traffic light'       , 
                         'traffic sign'        , 
                         'vegetation'          , 
@@ -77,12 +77,12 @@ class CityscapesDataset(Dataset):
                         'car'                 , 
                         'truck'               , 
                         'bus'                 , 
-                        'caravan'             , 
-                        'trailer'             , 
+#                        'caravan'             , 
+#                        'trailer'             , 
                         'train'               , 
                         'motorcycle'          , 
                         'bicycle'             , 
-                        'license plate'       , 
+#                        'license plate'       , 
                     ]
 
         if cfg.DATA_RESCALE:
@@ -253,13 +253,11 @@ class CityscapesDataset(Dataset):
         for i in range(self.cfg.MODEL_NUM_CLASSES):
             IoU.append(TP[i].value/(T[i].value+P[i].value-TP[i].value+1e-10))
         for i in range(self.cfg.MODEL_NUM_CLASSES):
-            if i == 0:
-                print('%11s:%7.3f%%'%('backbound',IoU[i]*100),end='\t')
+            
+            if i%2 != 1:
+                print('%11s:%7.3f%%'%(self.categories[i],IoU[i]*100),end='\t')
             else:
-                if i%2 != 1:
-                    print('%11s:%7.3f%%'%(self.categories[i-1],IoU[i]*100),end='\t')
-                else:
-                    print('%11s:%7.3f%%'%(self.categories[i-1],IoU[i]*100))
+                print('%11s:%7.3f%%'%(self.categories[i],IoU[i]*100))
                     
         miou = np.mean(np.array(IoU))
         print('\n======================================================')
